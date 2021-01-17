@@ -1,0 +1,62 @@
+<dx-popup
+  #popup
+  (onShown)="_popUpShown()"
+  [maxWidth]="900"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="{{ customersDTO.id == 0 ? 'Müşteri Ekle' : 'Müşteri Güncelle' }}"
+  [dragEnabled]="true"
+  [closeOnOutsideClick]="true"
+>
+  <div *dxTemplate="let data of 'content'">
+    <div class="default-popup">
+      <dx-box direction="row" width="100%">
+        <dxi-item class="" [ratio]="1">
+          <div class="form">
+            <div class="dx-fieldset">
+              <div class="dx-field">
+                <div class="dx-field-label">Şirket Adı</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="customersDTO.name"></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field">
+                <div class="dx-field-label">Email Adres</div>
+                <div class="dx-field-value">
+                  <dx-text-box
+                    [(value)]="customersDTO.emailAddress"
+                  ></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field">
+                <div class="dx-field-label">Adresi</div>
+                <div class="dx-field-value">
+                  <dx-text-area
+                    [height]="100"
+                    [(value)]="customersDTO.address"
+                  ></dx-text-area>
+                </div>
+              </div>
+            </div>
+          </div>
+        </dxi-item>
+      </dx-box>
+      <dx-box width="100%">
+        <dxi-item class="rect demo-dark" [ratio]="2">
+          <dx-button
+            text="{{ 'Kapat' }}"
+            type="normal"
+            (onClick)="popup.instance.hide()"
+          >
+          </dx-button>
+        </dxi-item>
+        <dxi-item class="rect demo-light" [ratio]="2">
+          <dx-button text="{{ 'Kaydet' }}" type="normal" (onClick)="_onSave()">
+          </dx-button>
+        </dxi-item>
+      </dx-box>
+    </div>
+  </div>
+</dx-popup>

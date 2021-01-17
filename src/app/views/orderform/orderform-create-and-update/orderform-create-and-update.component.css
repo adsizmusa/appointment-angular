@@ -1,0 +1,5 @@
+::ng-deep .order-form-popup .item {
+  width: 50%;
+  padding: 0 7px;
+  display: inline-block;
+}

@@ -1,0 +1,76 @@
+<dx-toolbar *ngIf="authService.storageService.token">
+  <dxi-item
+    location="before"
+    widget="dxButton"
+    locateInMenu="auto"
+    [options]="slideService.menuOptions"
+  >
+  </dxi-item>
+
+  <dxi-item location="center">
+    <b>{{ slideService.customerOptions.text }}</b>
+  </dxi-item>
+  <dxi-item
+    widget="dxButton"
+    locateInMenu="always"
+    [options]="slideService.userButtonOptions"
+  >
+  </dxi-item>
+  <dxi-item
+    widget="dxButton"
+    locateInMenu="always"
+    [options]="slideService.settingsButtonOptions"
+  >
+  </dxi-item>
+  <dxi-item
+    widget="dxButton"
+    locateInMenu="always"
+    [options]="slideService.closeButtonOptions"
+  >
+  </dxi-item>
+</dx-toolbar>
+<dx-drawer
+  [openedStateMode]="slideService.slideProperties.selectedOpenMode"
+  [position]="slideService.slideProperties.selectedPosition"
+  [revealMode]="slideService.slideProperties.selectedRevealMode"
+  template="template"
+  [(opened)]="slideService.slideProperties.isDrawerOpen"
+  [closeOnOutsideClick]="slideService.slideProperties.closeOnOutsideClick"
+>
+  <div *dxTemplate="let data of 'template'" style="width: 200px">
+    <dx-select-box
+      [dataSource]="slideService.rightsDTO.companiesDTOs"
+      displayExpr="name"
+      valueExpr="id"
+      [searchMode]="'contains'"
+      [searchExpr]="'name'"
+      [searchTimeout]="200"
+      [minSearchLength]="0"
+      [searchEnabled]="true"
+      (onItemClick)="changeCostumer($event)"
+      [value]="authService.storageService.company.id"
+    ></dx-select-box>
+
+    <dx-list
+      class="panel-list"
+      [dataSource]="slideService.rightsDTO.spMenus"
+      [displayExpr]="'name'"
+      [hoverStateEnabled]="false"
+      [activeStateEnabled]="false"
+      [focusStateEnabled]="false"
+      (onItemClick)="slideService.onClick($event)"
+    >
+    </dx-list>
+  </div>
+  <div id="content" class="dx-theme-background-color">
+    <router-outlet></router-outlet>
+  </div>
+</dx-drawer>
+
+<ngx-spinner
+  class="ngx-spinner"
+  bdColor="rgba(51,51,51,0.3)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate-multiple"
+></ngx-spinner>

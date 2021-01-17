@@ -1,0 +1,100 @@
+<dx-toolbar>
+  <dxi-item
+    location="before"
+    widget="dxButton"
+    locateInMenu="auto"
+    [options]="refreshButtonOptions"
+  >
+  </dxi-item>
+
+  <dxi-item
+    location="before"
+    widget="dxButton"
+    locateInMenu="auto"
+    [visible]="pageRights.canAdd"
+    [options]="addButtonOptions"
+  >
+  </dxi-item>
+</dx-toolbar>
+<div>
+  <dx-box direction="row" width="100%">
+    <dxi-item [ratio]="1">
+      <dx-data-grid
+        id="gridProduct"
+        [allowColumnReordering]="true"
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        [rowAlternationEnabled]="true"
+        keyExpr="id"
+        [dataSource]="userService.usersDTOs"
+        [showBorders]="true"
+        (onCellDblClick)="_onUpdate($event)"
+      >
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+
+        <dxi-column
+          dataField="id"
+          caption="  {{ 'Customer ID' }}"
+          dataType="booloen"
+        ></dxi-column>
+
+        <dxi-column
+          dataField="name"
+          caption="  {{ 'Name' }}"
+          dataType="string"
+        ></dxi-column>
+
+        <dxi-column
+          dataField="phone"
+          caption="  {{ 'Telefon' }}"
+          dataType="string"
+        ></dxi-column>
+        <dxi-column
+          dataField="address"
+          caption="  {{ 'Adres' }}"
+          dataType="string"
+        ></dxi-column>
+        <dxo-editing
+          mode="row"
+          [allowAdding]="false"
+          [allowUpdating]="false"
+          [allowDeleting]="true"
+          [useIcons]="true"
+        >
+        </dxo-editing>
+        <dxi-column type="buttons" cellTemplate="ButtonsTemplate"> </dxi-column>
+        <div *dxTemplate="let data of 'ButtonsTemplate'">
+          <dx-button
+            (onClick)="_onUserMenu(data)"
+            icon="fas fa-bars"
+          ></dx-button>
+          <dx-button
+            (onClick)="_onUpdate(data)"
+            [visible]="pageRights.canUpdate"
+            icon="fas fa-edit"
+          ></dx-button>
+          <dx-button
+            name="delete"
+            [visible]="pageRights.canDelete"
+            (onClick)="_onDeletePage(data)"
+            icon="fas fa-trash-alt"
+          ></dx-button>
+        </div>
+        <dxo-paging [pageSize]="12"></dxo-paging>
+        <dxo-pager
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[5, 10, 15, 20, 25, 30, 50, 75, 100, 150]"
+        ></dxo-pager>
+        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true">
+        </dxo-search-panel>
+      </dx-data-grid>
+    </dxi-item>
+  </dx-box>
+</div>
+<app-user-create-and-update
+  #userCreateAndUpdateComponent
+></app-user-create-and-update>
+<app-user-menu #userMenuComponent></app-user-menu>

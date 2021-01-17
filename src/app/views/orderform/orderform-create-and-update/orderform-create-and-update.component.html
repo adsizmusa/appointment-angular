@@ -1,0 +1,134 @@
+<dx-popup
+  #popup
+  (onShown)="_popUpShown()"
+  [maxWidth]="900"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="{{
+    orderformsDTO.id == 0 ? 'Sipariş Formu Ekle' : 'Sipariş Formu Güncelle'
+  }}"
+  [dragEnabled]="true"
+  [closeOnOutsideClick]="true"
+>
+  <div *dxTemplate="let data of 'content'">
+    <div class="order-form-popup">
+      <dx-box direction="row" width="100%">
+        <dxi-item class="" [ratio]="1">
+          <div class="form">
+            <div class="dx-fieldset">
+              <div class="">
+                <div class="dx-field item">
+                  <div class="dx-field-label">Satış Tarihi</div>
+                  <div class="dx-field-value">
+                    <dx-date-box
+                      [(value)]="orderformsDTO.invoiceDate"
+                    ></dx-date-box>
+                  </div>
+                </div>
+                <div class="dx-field item">
+                  <div class="dx-field-label">Fatura Numarası</div>
+                  <div class="dx-field-value">
+                    <dx-number-box
+                      [(value)]="orderformsDTO.invoiceNumber"
+                    ></dx-number-box>
+                  </div>
+                </div>
+                <div class="dx-field item">
+                  <div class="dx-field-label">Müşterinin Adı</div>
+                  <div class="dx-field-value">
+                    <dx-text-box
+                      [(value)]="orderformsDTO.customerName"
+                    ></dx-text-box>
+                  </div>
+                </div>
+
+                <div class="dx-field item">
+                  <div class="dx-field-label">Müşteriye satış fiyatı</div>
+                  <div class="dx-field-value">
+                    <dx-number-box
+                      [(value)]="orderformsDTO.customerPrice"
+                    ></dx-number-box>
+                  </div>
+                </div>
+                <div class="dx-field item">
+                  <div class="dx-field-label">Ürün Adı</div>
+                  <div class="dx-field-value">
+                    <dx-text-box
+                      [(value)]="orderformsDTO.productName"
+                    ></dx-text-box>
+                  </div>
+                </div>
+                <div class="dx-field item">
+                  <div class="dx-field-label">Miktarı</div>
+                  <div class="dx-field-value">
+                    <dx-number-box
+                      [(value)]="orderformsDTO.productAmount"
+                    ></dx-number-box>
+                  </div>
+                </div>
+                <div class="dx-field item">
+                  <div class="dx-field-label">Tedarikçi Adı</div>
+                  <div class="dx-field-value">
+                    <dx-text-box
+                      [(value)]="orderformsDTO.supplierName"
+                    ></dx-text-box>
+                  </div>
+                </div>
+                <div class="dx-field item">
+                  <div class="dx-field-label">Tedarikçi Alış Fiyatı</div>
+                  <div class="dx-field-value">
+                    <dx-number-box
+                      [(value)]="orderformsDTO.supplierPrice"
+                    ></dx-number-box>
+                  </div>
+                </div>
+                <div class="dx-field item">
+                  <div class="dx-field-label">Satışın Yapıldığı Pazar Yeri</div>
+                  <div class="dx-field-value">
+                    <dx-select-box
+                      [dataSource]="orderformService.marketplaces"
+                      [(value)]="orderformsDTO.marketplace"
+                      [displayExpr]="'text'"
+                      [valueExpr]="'value'"
+                    ></dx-select-box>
+                  </div>
+                </div>
+                <div class="dx-field item">
+                  <div class="dx-field-label">Çıkış Deposu</div>
+                  <div class="dx-field-value">
+                    <dx-number-box
+                      [(value)]="orderformsDTO.outletStorage"
+                    ></dx-number-box>
+                  </div>
+                </div>
+                <div class="dx-field">
+                  <div>Notlar</div>
+                  <div>
+                    <dx-text-area
+                      [height]="100"
+                      [(value)]="orderformsDTO.description"
+                    ></dx-text-area>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </dxi-item>
+      </dx-box>
+      <dx-box width="100%">
+        <dxi-item class="rect demo-dark" [ratio]="2">
+          <dx-button
+            text="{{ 'Kapat' }}"
+            type="normal"
+            (onClick)="popup.instance.hide()"
+          >
+          </dx-button>
+        </dxi-item>
+        <dxi-item class="rect demo-light" [ratio]="2">
+          <dx-button text="{{ 'Kaydet' }}" type="normal" (onClick)="_onSave()">
+          </dx-button>
+        </dxi-item>
+      </dx-box>
+    </div>
+  </div>
+</dx-popup>

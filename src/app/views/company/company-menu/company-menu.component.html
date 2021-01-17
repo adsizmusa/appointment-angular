@@ -1,0 +1,52 @@
+<dx-popup
+  #popup
+  (onShown)="_popUpShown()"
+  [width]="900"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="{{ 'Şirket Menüleri' }}"
+  [dragEnabled]="true"
+  [closeOnOutsideClick]="true"
+>
+  <div *dxTemplate="let data of 'content'">
+    <div class="company-menu-popup">
+      <dx-box direction="row" width="100%">
+        <dxi-item class="" [ratio]="1">
+          <dx-list
+            [items]="companyMenus"
+            [height]="400"
+            selectionMode="multiple"
+            [displayExpr]="'name'"
+            itemTemplate="listItem"
+          >
+            <div *dxTemplate="let item of 'listItem'">
+              <dx-switch
+                [(value)]="item.isVisible"
+                [width]="70"
+                [disabled]="item.homeStatus"
+                [switchedOnText]="'Açık'"
+                [switchedOffText]="'Kapalı'"
+                (onOptionChanged)="changeMenuState(item)"
+              ></dx-switch>
+              {{ item.name }}
+            </div>
+          </dx-list>
+        </dxi-item>
+      </dx-box>
+      <dx-box width="100%">
+        <dxi-item class="rect demo-dark" [ratio]="2">
+          <dx-button
+            text="{{ 'Cancel' }}"
+            type="normal"
+            (onClick)="popup.instance.hide()"
+          >
+          </dx-button>
+        </dxi-item>
+        <dxi-item class="rect demo-light" [ratio]="2">
+          <dx-button text="{{ 'Save' }}" type="normal" (onClick)="_onSave()">
+          </dx-button>
+        </dxi-item>
+      </dx-box>
+    </div>
+  </div>
+</dx-popup>

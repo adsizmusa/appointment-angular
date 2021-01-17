@@ -1,0 +1,91 @@
+<dx-popup
+  #popup
+  (onShown)="_popUpShown()"
+  [width]="900"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="{{ 'Default Title' }}"
+  [dragEnabled]="true"
+  [closeOnOutsideClick]="true"
+>
+  <div *dxTemplate="let data of 'content'">
+    <div class="user-menu-popup">
+      <dx-box direction="row" width="100%">
+        <dxi-item class="" [ratio]="1">
+          <table class="rights-table">
+            <thead>
+              <tr>
+                <th>Sayfa Adı</th>
+                <th>Giriş Yetkisi</th>
+                <th>Ekleme</th>
+                <th>Güncelleme</th>
+                <th>Silme</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of userMenus">
+                <td class="name">
+                  {{ item.name }}
+                </td>
+                <td>
+                  <dx-switch
+                    [(value)]="item.isVisible"
+                    [width]="70"
+                    [switchedOnText]="'Açık'"
+                    [switchedOffText]="'Kapalı'"
+                    [disabled]="item.homeStatus"
+                    (onOptionChanged)="changeMenuState(item)"
+                  ></dx-switch>
+                </td>
+                <td>
+                  <dx-switch
+                    [(value)]="item.canAdd"
+                    [width]="70"
+                    [switchedOnText]="'Açık'"
+                    [switchedOffText]="'Kapalı'"
+                    [disabled]="!item.isVisible"
+                    (onOptionChanged)="changeMenuState(item)"
+                  ></dx-switch>
+                </td>
+                <td>
+                  <dx-switch
+                    [(value)]="item.canUpdate"
+                    [width]="70"
+                    [switchedOnText]="'Açık'"
+                    [switchedOffText]="'Kapalı'"
+                    [disabled]="!item.isVisible"
+                    (onOptionChanged)="changeMenuState(item)"
+                  ></dx-switch>
+                </td>
+                <td>
+                  <dx-switch
+                    [(value)]="item.canDelete"
+                    [width]="70"
+                    [switchedOnText]="'Açık'"
+                    [switchedOffText]="'Kapalı'"
+                    [disabled]="!item.isVisible"
+                    (onOptionChanged)="changeMenuState(item)"
+                  ></dx-switch>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </dxi-item>
+      </dx-box>
+      <dx-box width="100%">
+        <dxi-item class="rect demo-dark" [ratio]="2">
+          <dx-button
+            text="{{ 'Cancel' }}"
+            type="normal"
+            (onClick)="popup.instance.hide()"
+          >
+          </dx-button>
+        </dxi-item>
+        <dxi-item class="rect demo-light" [ratio]="2">
+          <dx-button text="{{ 'Save' }}" type="normal" (onClick)="_onSave()">
+          </dx-button>
+        </dxi-item>
+      </dx-box>
+    </div>
+  </div>
+</dx-popup>

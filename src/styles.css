@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+.div-flex {
+  display: flex;
+  width: 100%;
+}
+
+.div-flex .item {
+  padding: 0 7px;
+}

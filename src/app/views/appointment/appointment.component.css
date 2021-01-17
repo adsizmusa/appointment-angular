@@ -1,0 +1,8 @@
+::ng-deep .calendar {
+  height: 92vh;
+  overflow-y: scroll;
+}
+
+::ng-deep .dx-scheduler {
+  height: 92vh !important;
+}

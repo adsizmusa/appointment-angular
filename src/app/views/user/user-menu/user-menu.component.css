@@ -1,0 +1,25 @@
+::ng-deep .user-menu-popup .rights-table {
+  width: 100%;
+}
+::ng-deep .user-menu-popup .rights-table td,
+::ng-deep .user-menu-popup .rights-table th {
+  text-align: center;
+  border: 1px solid;
+  border-color: #ececec;
+  border-right: 0;
+  border-bottom: 0;
+  padding: 4px 13px;
+}
+::ng-deep .user-menu-popup .rights-table tr td:last-child,
+::ng-deep .user-menu-popup .rights-table tr th:last-child {
+  border-right: 1px solid;
+  border-color: #ececec;
+}
+
+::ng-deep .user-menu-popup .rights-table tr:last-child td {
+  border-right: 1px solid;
+  border-color: #ececec;
+}
+::ng-deep .user-menu-popup .rights-table td.name {
+  width: 100%;
+}

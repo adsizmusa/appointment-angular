@@ -1,0 +1,121 @@
+<div>
+  <dx-box direction="row" width="100%">
+    <dxi-item [ratio]="4">
+      <div class="calendar">
+        <dx-scheduler
+          [dataSource]="appointmentService.appointmentsDTOs"
+          currentView="Day"
+          [(currentDate)]="currentDate"
+          [showCurrentTimeIndicator]="true"
+          [shadeUntilCurrentTime]="true"
+          [(groupByDate)]="groupByDate"
+          [endDateExpr]="'endDate'"
+          [startDateExpr]="'startDate'"
+          [textExpr]="'name'"
+          [groups]="['serviceLocationId']"
+          [crossScrollingEnabled]="true"
+          [useDropDownViewSwitcher]="false"
+          [editing]="false"
+          [showAllDayPanel]="false"
+          (onContentReady)="onContentReady($event)"
+          (onCellClick)="onAppointmentDblClick($event)"
+          (onAppointmentDblClick)="onAppointmentDblClick($event)"
+        >
+          <dxi-view
+            type="day"
+            name="Day"
+            [intervalCount]="1"
+            [startDate]="currentDate"
+          >
+          </dxi-view>
+          <dxi-view
+            type="day"
+            name="3 Days"
+            [intervalCount]="3"
+            [startDate]="daysViewStartDate"
+          >
+          </dxi-view>
+          <dxi-view
+            type="week"
+            name="Week"
+            [intervalCount]="1"
+            [startDate]="daysViewStartDate"
+          >
+          </dxi-view>
+          <dxi-view type="month" name="Month" [intervalCount]="1"> </dxi-view>
+          <dxo-editing
+            #editingOptions
+            [allowAdding]="false"
+            [allowDeleting]="false"
+            [allowUpdating]="false"
+            [allowResizing]="false"
+            [allowDragging]="false"
+          ></dxo-editing>
+          <dxi-resource
+            [dataSource]="appointmentService.schedulerDTO.serviceLocationsDTOs"
+            fieldExpr="serviceLocationId"
+            label="Place"
+            [displayExpr]="'name'"
+            [allowMultiple]="false"
+          ></dxi-resource>
+
+          <dxi-resource
+            fieldExpr="userId"
+            label="Owner"
+            [allowMultiple]="true"
+            [displayExpr]="'name'"
+            [dataSource]="appointmentService.schedulerDTO.usersDTOs"
+            [useColorAsDefault]="'Owner'"
+          >
+          </dxi-resource>
+        </dx-scheduler>
+      </div>
+    </dxi-item>
+    <dxi-item [ratio]="1">
+      <div>
+        <dx-box direction="row" width="100%">
+          <dxi-item [ratio]="4">
+            <dx-toolbar>
+              <dxi-item
+                location="before"
+                widget="dxButton"
+                locateInMenu="auto"
+                [options]="refreshButtonOptions"
+              >
+              </dxi-item>
+
+              <dxi-item
+                location="before"
+                widget="dxButton"
+                locateInMenu="auto"
+                [options]="addButtonOptions"
+                [visible]="!pageRights.canAdd"
+              >
+              </dxi-item>
+            </dx-toolbar>
+          </dxi-item>
+          <dxi-item [ratio]="2">
+            <div class="options">
+              <div class="option">
+                <dx-switch
+                  [(value)]="groupByDate"
+                  [switchedOnText]="'Tarih'"
+                  [width]="90"
+                  [switchedOffText]="'Yer'"
+                >
+                </dx-switch>
+              </div>
+            </div>
+          </dxi-item>
+        </dx-box>
+      </div>
+
+      <div>
+        <dx-calendar [(value)]="currentDate"> </dx-calendar>
+      </div>
+    </dxi-item>
+  </dx-box>
+</div>
+<app-appointment-create-and-update
+  #appointmentCreateAndUpdateComponent
+></app-appointment-create-and-update>

@@ -1,0 +1,118 @@
+<dx-popup
+  #popup
+  (onShown)="_popUpShown()"
+  [maxWidth]="900"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="{{ usersDTO.id == 0 ? 'Kullanıcı Ekle' : 'Kullanıcı Güncelle' }}"
+  [dragEnabled]="true"
+  [closeOnOutsideClick]="true"
+>
+  <div *dxTemplate="let data of 'content'">
+    <div class="user-form-popup">
+      <dx-box direction="row" width="100%">
+        <dxi-item class="" [ratio]="1">
+          <div class="form">
+            <div class="dx-fieldset">
+              <div class="dx-field item">
+                <div class="dx-field-label">Adı</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="usersDTO.name"></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Soyadı</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="usersDTO.surname"></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Kullanıcı Adı</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="usersDTO.username"></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Parola</div>
+                <div class="dx-field-value">
+                  <dx-text-box
+                    mode="password"
+                    [(value)]="usersDTO.password"
+                  ></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Cep Telefonu</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="usersDTO.mobilePhone"></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Email Adresi</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="usersDTO.emailAddress"></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Adresi</div>
+                <div class="dx-field-value">
+                  <dx-text-area
+                    [height]="100"
+                    [(value)]="usersDTO.address"
+                  ></dx-text-area>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Doğum Tarihi</div>
+                <div class="dx-field-value">
+                  <dx-date-box [value]="usersDTO.birthday" type="date">
+                  </dx-date-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Cinsiyet</div>
+                <div class="dx-field-value">
+                  <dx-radio-group
+                    [items]="usersDTO.genders"
+                    layout="horizontal"
+                    displayExpr="name"
+                    (onValueChanged)="onChangeGender($event)"
+                  >
+                  </dx-radio-group>
+                </div>
+              </div>
+              <div class="dx-field item">
+                <div class="dx-field-label">Rengi</div>
+                <div class="dx-field-value">
+                  <dx-color-box [(value)]="usersDTO.color"></dx-color-box>
+                </div>
+              </div>
+            </div>
+          </div>
+        </dxi-item>
+      </dx-box>
+      <dx-box width="100%">
+        <dxi-item class="rect demo-dark" [ratio]="2">
+          <dx-button
+            text="{{ 'Kapat' }}"
+            type="normal"
+            (onClick)="popup.instance.hide()"
+          >
+          </dx-button>
+        </dxi-item>
+        <dxi-item class="rect demo-light" [ratio]="2">
+          <dx-button text="{{ 'Kaydet' }}" type="normal" (onClick)="_onSave()">
+          </dx-button>
+        </dxi-item>
+      </dx-box>
+    </div>
+  </div>
+</dx-popup>

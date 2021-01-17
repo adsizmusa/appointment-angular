@@ -1,0 +1,29 @@
+.login-form form {
+  max-width: 400px;
+  margin: auto;
+}
+
+.login-form-items-wrapper {
+  padding: 20px;
+  /* border: 1px solid #e3e3e3; */
+  /* border-radius: 5px; */
+  /* box-shadow: 0 13px 16px rgba(0, 0, 0, 0.5); */
+}
+
+.login-form .login-form-item {
+  margin: 10px 0;
+}
+
+.login-form .login-form-item img {
+  width: 100%;
+  height: auto;
+}
+
+.login-form form #login-button {
+  display: block;
+  padding: 5px 0;
+  line-height: 1.5em;
+  font-size: 1.2em;
+  font-weight: 700;
+  text-transform: uppercase;
+}

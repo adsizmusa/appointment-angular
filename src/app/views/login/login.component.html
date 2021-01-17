@@ -1,0 +1,53 @@
+<div class="login-form" fxLayout="row" fxLayoutAlign="center" fxFlexFill>
+  <form #form="ngForm" (submit)="signIn($event)">
+    <div class="login-form-items-wrapper">
+      <div class="login-form-item">
+        <!-- <img
+          class="form-signin-image"
+          src="assets/images/squid_new_large.png"
+        /> -->
+      </div>
+
+      <div class="login-form-item">
+        <label>{{ "Login" }}</label>
+        <dx-text-box name="Username" [(value)]="login.username">
+          <dx-validator>
+            <dxi-validation-rule
+              type="required"
+              message="Login is required"
+            ></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+
+      <div class="login-form-item">
+        <label>{{ "Password" }}</label>
+        <dx-text-box name="Password" [(value)]="login.password" mode="password">
+          <dx-validator>
+            <dxi-validation-rule
+              type="required"
+              message="Password is required"
+            ></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+
+      <div class="login-form-item">
+        <dx-validation-summary id="summary"></dx-validation-summary>
+      </div>
+
+      <div class="login-form-item">
+        <dx-button
+          id="login-button"
+          text="Login"
+          type="normal"
+          [useSubmitBehavior]="true"
+        >
+        </dx-button>
+      </div>
+
+      <br />
+      <div *ngIf="invalidLogin">{{ "Invalid username or password" }}</div>
+    </div>
+  </form>
+</div>

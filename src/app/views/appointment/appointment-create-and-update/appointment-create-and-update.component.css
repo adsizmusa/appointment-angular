@@ -1,0 +1,5 @@
+::ng-deep .appointment-popup .text-box {
+  width: 50%;
+  padding: 0 7px;
+  display: inline-block;
+}

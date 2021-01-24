@@ -13,7 +13,6 @@ import { RightsDTO } from '../models/right.DTO';
 import { SchedulerDTO } from '../models/scheduler.DTO';
 import { spCompanyMenus } from '../models/sp.company.menus';
 import { SpUserMenus } from '../models/sp.user.menus';
-import { SmstemplatesDTO } from '../models/smstemplates.DTO';
 
 @Injectable({
   providedIn: 'root',
@@ -274,39 +273,6 @@ export class BaseService {
   public deleteOrderForms(id: number): Observable<boolean> {
     return this.httpClient.delete<boolean>(
       `${this._environment.orderformAPI.BASE_URL}/${id}`
-    );
-  }
-  //#endregion
-
-  //#region  This regison is for the end poinst of the SmstemplatesController(
-  public getSmstemplates(): Observable<SmstemplatesDTO[]> {
-    return this.httpClient.get<SmstemplatesDTO[]>(
-      `${this._environment.smstemplateAPI.BASE_URL}`
-    );
-  }
-  public getSmstemplate(id: number): Observable<SmstemplatesDTO> {
-    return this.httpClient.get<SmstemplatesDTO>(
-      `${this._environment.customerAPI.BASE_URL}/${id}`
-    );
-  }
-  public putSmstemplates(
-    id: number,
-    dto: SmstemplatesDTO
-  ): Observable<SmstemplatesDTO> {
-    return this.httpClient.put<SmstemplatesDTO>(
-      `${this._environment.smstemplateAPI.BASE_URL}/${id}`,
-      dto
-    );
-  }
-  public postSmstemplates(dto: SmstemplatesDTO): Observable<SmstemplatesDTO> {
-    return this.httpClient.post<SmstemplatesDTO>(
-      `${this._environment.smstemplateAPI.BASE_URL}`,
-      dto
-    );
-  }
-  public deleteSmstemplates(id: number): Observable<boolean> {
-    return this.httpClient.delete<boolean>(
-      `${this._environment.smstemplateAPI.BASE_URL}/${id}`
     );
   }
   //#endregion

@@ -34,8 +34,7 @@ import { OrderformCreateAndUpdateComponent } from './views/orderform/orderform-c
 import { UserMenuComponent } from './views/user/user-menu/user-menu.component';
 import { CompanyMenuComponent } from './views/company/company-menu/company-menu.component';
 import { CompanyService } from './core/services/company.service';
-import { SmstemplateComponent } from './views/smstemplate/smstemplate.component';
-import { SmstemplateCreateAndUpdateComponent } from './views/smstemplate/smstemplate-create-and-update/smstemplate-create-and-update.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,8 +56,10 @@ import { SmstemplateCreateAndUpdateComponent } from './views/smstemplate/smstemp
     OrderformCreateAndUpdateComponent,
     UserMenuComponent,
     CompanyMenuComponent,
-    SmstemplateComponent,
-    SmstemplateCreateAndUpdateComponent,
+  ],
+  exports: [
+    //...
+    TranslateModule,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +69,8 @@ import { SmstemplateCreateAndUpdateComponent } from './views/smstemplate/smstemp
     NgxSpinnerModule,
     HttpClientModule,
     FormsModule,
-    TranslateModule,
+
+    TranslateModule.forRoot(),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

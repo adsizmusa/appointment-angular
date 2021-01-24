@@ -8,7 +8,6 @@ import { UserAPI } from 'src/app/core/api-requests/user.api';
 import { ServicesLocationAPI } from 'src/app/core/api-requests/services.location.api';
 import { ServiceAPI } from 'src/app/core/api-requests/service.api';
 import { OrderformAPI } from 'src/app/core/api-requests/orderform.api';
-import { SmstemplateAPI } from 'src/app/core/api-requests/smstemplate.api';
 
 export class environment {
   production: boolean = false;
@@ -24,5 +23,4 @@ export class environment {
   autAPI: AutAPI = new AutAPI(this.api);
   servicesLocationAPI: ServicesLocationAPI = new ServicesLocationAPI(this.api);
   orderformAPI: OrderformAPI = new OrderformAPI(this.api);
-  smstemplateAPI: SmstemplateAPI = new SmstemplateAPI(this.api);
 }

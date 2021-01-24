@@ -9,6 +9,7 @@ import { SlideService } from 'src/app/core/services/slide.service';
 import { MenuEnum } from 'src/app/core/enums/menu.enum';
 import dxScheduler, { dxSchedulerOptions } from 'devextreme/ui/scheduler';
 import DevExpress from 'devextreme';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-appointment',
@@ -30,6 +31,7 @@ export class AppointmentComponent extends BaseControl implements OnInit {
   pageRights: SpUserMenus = new SpUserMenus();
   constructor(
     public appointmentService: AppointmentService,
+    public storageService: StorageService,
     private slideService: SlideService
   ) {
     super();

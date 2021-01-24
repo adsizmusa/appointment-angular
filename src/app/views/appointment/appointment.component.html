@@ -5,7 +5,7 @@
         <dx-scheduler
           [locale]="'tr'"
           [dataSource]="appointmentService.appointmentsDTOs"
-          currentView="Day"
+          currentView="Gün"
           [(currentDate)]="currentDate"
           [showCurrentTimeIndicator]="true"
           [shadeUntilCurrentTime]="true"
@@ -27,27 +27,27 @@
           (onAppointmentDblClick)="onAppointmentDblClick($event)"
         >
           <dxi-view
-            name="Day"
+            name="Gün"
             type="day"
             [intervalCount]="1"
             [startDate]="currentDate"
           >
           </dxi-view>
           <!-- <dxi-view
-            name="3 Day"
+            name="3 Gün"
             type="day"
             [intervalCount]="3"
             [startDate]="daysViewStartDate"
           >
           </dxi-view> -->
           <dxi-view
-            name="Week"
+            name="Hafta"
             type="week"
             [intervalCount]="1"
             [startDate]="daysViewStartDate"
           >
           </dxi-view>
-          <dxi-view name="Month" type="month" [intervalCount]="1"> </dxi-view>
+          <dxi-view name="Ay" type="month" [intervalCount]="1"> </dxi-view>
           <dxo-editing
             #editingOptions
             [allowAdding]="false"

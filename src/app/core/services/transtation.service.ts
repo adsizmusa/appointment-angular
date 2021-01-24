@@ -53,9 +53,11 @@ export class TranstationService {
     }
 
     locale(language);
+
     me.ngxTranslate.setDefaultLang(language);
     me.ngxTranslate.use(language);
     me.registerCulture(language);
+
     loadMessages(trMessages);
     loadMessages(trMessagesCostum);
   }

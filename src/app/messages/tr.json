@@ -11,6 +11,9 @@
     "Back": "Geri",
     "OK": "tamam",
     "Week": "Hafta",
+
+    "Day": "Gün",
+    "Ay": "Ay",
     "dxCollectionWidget-noDataText": "gösterilecek bilgi yok",
     "validation-required": "gereklidir",
     "validation-required-formatted": "{0} gerekli",

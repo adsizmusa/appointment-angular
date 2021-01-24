@@ -40,7 +40,7 @@
                 <div class="dx-field-value">
                   <dx-text-box
                     mode="password"
-                    [(value)]="usersDTO.password"
+                    [(value)]="usersDTO.passwordNew"
                   ></dx-text-box>
                 </div>
               </div>
@@ -93,6 +93,13 @@
                 <div class="dx-field-label">Rengi</div>
                 <div class="dx-field-value">
                   <dx-color-box [(value)]="usersDTO.color"></dx-color-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Komisyon %</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="usersDTO.commission"></dx-text-box>
                 </div>
               </div>
             </div>

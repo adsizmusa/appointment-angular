@@ -12,6 +12,9 @@ export class CompaniesDTO extends BaseDTO {
   authorizedPerson: string;
   authorizedPhone: string;
   authorizedEmailAddress: string;
+  appointmentFrequency: number;
+  appointmentStartHour: number;
+  appointmentEndHour: number;
   description: string;
   activationExpiryDate?: Date;
 }

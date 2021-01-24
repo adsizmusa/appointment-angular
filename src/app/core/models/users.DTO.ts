@@ -18,8 +18,9 @@ export class UsersDTO extends BaseDTO {
   ];
   description: string;
   username: string;
-  password: string;
+  passwordNew: string;
   color: string;
   baseWorkerId?: number;
   permissonIds: string;
+  commission: number;
 }

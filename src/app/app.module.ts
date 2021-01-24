@@ -34,6 +34,8 @@ import { OrderformCreateAndUpdateComponent } from './views/orderform/orderform-c
 import { UserMenuComponent } from './views/user/user-menu/user-menu.component';
 import { CompanyMenuComponent } from './views/company/company-menu/company-menu.component';
 import { CompanyService } from './core/services/company.service';
+import { SmstemplateComponent } from './views/smstemplate/smstemplate.component';
+import { SmstemplateCreateAndUpdateComponent } from './views/smstemplate/smstemplate-create-and-update/smstemplate-create-and-update.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +57,8 @@ import { CompanyService } from './core/services/company.service';
     OrderformCreateAndUpdateComponent,
     UserMenuComponent,
     CompanyMenuComponent,
+    SmstemplateComponent,
+    SmstemplateCreateAndUpdateComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@
           [(currentDate)]="currentDate"
           [showCurrentTimeIndicator]="true"
           [shadeUntilCurrentTime]="true"
+          dateCellTemplate="dateCellTemplate"
           [(groupByDate)]="groupByDate"
           [endDateExpr]="'endDate'"
           [startDateExpr]="'startDate'"
@@ -16,33 +17,37 @@
           [crossScrollingEnabled]="true"
           [useDropDownViewSwitcher]="false"
           [editing]="false"
-          [showAllDayPanel]="false"
+          [firstDayOfWeek]="1"
+          [cellDuration]="60"
+          [startDayHour]="8"
+          [endDayHour]="24"
+          [showAllDayPanel]="true"
           (onContentReady)="onContentReady($event)"
           (onCellClick)="onAppointmentDblClick($event)"
           (onAppointmentDblClick)="onAppointmentDblClick($event)"
         >
           <dxi-view
-            type="day"
             name="Day"
+            type="day"
             [intervalCount]="1"
             [startDate]="currentDate"
           >
           </dxi-view>
           <dxi-view
+            name="3 Day"
             type="day"
-            name="3 Days"
             [intervalCount]="3"
             [startDate]="daysViewStartDate"
           >
           </dxi-view>
           <dxi-view
-            type="week"
             name="Week"
+            type="week"
             [intervalCount]="1"
             [startDate]="daysViewStartDate"
           >
           </dxi-view>
-          <dxi-view type="month" name="Month" [intervalCount]="1"> </dxi-view>
+          <dxi-view name="Months" type="month" [intervalCount]="1"> </dxi-view>
           <dxo-editing
             #editingOptions
             [allowAdding]="false"
@@ -68,6 +73,23 @@
             [useColorAsDefault]="'Owner'"
           >
           </dxi-resource>
+
+          <div *dxTemplate="let data of 'dateCellTemplate'">
+            <div class="name">
+              {{
+                [
+                  "Pazar",
+                  "Pazartesi",
+                  "Salı",
+                  "Çarşamba",
+                  "Perşembe",
+                  "Cuma",
+                  "Cumartesi"
+                ][data.date.getDay()]
+              }}
+            </div>
+            <div class="number">{{ data.date.getDate() }}</div>
+          </div>
         </dx-scheduler>
       </div>
     </dxi-item>

@@ -7,6 +7,8 @@ import { DxSchedulerComponent } from 'devextreme-angular';
 import { SpUserMenus } from 'src/app/core/models/sp.user.menus';
 import { SlideService } from 'src/app/core/services/slide.service';
 import { MenuEnum } from 'src/app/core/enums/menu.enum';
+import dxScheduler, { dxSchedulerOptions } from 'devextreme/ui/scheduler';
+import DevExpress from 'devextreme';
 
 @Component({
   selector: 'app-appointment',

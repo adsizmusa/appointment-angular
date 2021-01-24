@@ -9,6 +9,7 @@ import { UserComponent } from './views/user/user.component';
 import { ServiceComponent } from './views/service/service.component';
 import { ServicesLocationComponent } from './views/services-location/services-location.component';
 import { OrderformComponent } from './views/orderform/orderform.component';
+import { SmstemplateComponent } from './views/smstemplate/smstemplate.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'service', component: ServiceComponent },
   { path: 'service-location', component: ServicesLocationComponent },
   { path: 'orderform', component: OrderformComponent },
+  { path: 'smstemplate', component: SmstemplateComponent },
 ];
 
 @NgModule({

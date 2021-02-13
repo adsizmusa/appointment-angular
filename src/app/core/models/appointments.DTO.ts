@@ -7,8 +7,11 @@ export class AppointmentsDTO extends BaseDTO {
   }
   name?: string;
   userId?: number;
+  userName?: string;
   customerId?: number;
+  customerName?: string;
   serviceId?: number;
+  serviceName?: string;
   serviceLocationId?: number;
   startDate?: Date = null;
   endDate?: Date = null;

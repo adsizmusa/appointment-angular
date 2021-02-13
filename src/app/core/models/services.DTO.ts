@@ -8,5 +8,5 @@ export class ServicesDTO extends BaseDTO {
   name: string;
   price?: number;
   description: string;
-  isGeneral?: boolean;
+  isSendSms?: boolean;
 }

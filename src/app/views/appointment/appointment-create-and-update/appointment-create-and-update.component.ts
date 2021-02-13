@@ -54,6 +54,21 @@ export class AppointmentCreateAndUpdateComponent
   }
   _onSave() {
     const me = this;
+    me.appointmentsDTO.name =
+      me.appointmentsDTO.userName.toUpperCase() +
+      ' - Müşteri: ' +
+      me.appointmentsDTO.customerName.toUpperCase() +
+      '(' +
+      me.appointmentsDTO.startDate.getHours() +
+      ':' +
+      me.appointmentsDTO.startDate.getMinutes() +
+      '-' +
+      me.appointmentsDTO.endDate.getHours() +
+      ':' +
+      me.appointmentsDTO.endDate.getMinutes() +
+      ') (' +
+      me.appointmentsDTO.serviceName +
+      ')';
     if (me.appointmentsDTO.id == 0) {
       me.appointmentService
         .postAppointments(me.appointmentsDTO)
@@ -75,13 +90,30 @@ export class AppointmentCreateAndUpdateComponent
         });
     }
   }
+
+  _onDelete() {
+    const me = this;
+    if (me.appointmentsDTO.id != 0) {
+      me.appointmentService
+        .deleteAppointments(me.appointmentsDTO.id)
+        .pipe(takeUntil(me.ngUnSubscribe))
+        .subscribe((appointmentsDTO) => {
+          me.appointmentService.loadServices();
+
+          me.popup.instance.hide();
+          me.popupClosed.emit(true);
+        });
+    }
+  }
   onCahngeUser(e) {
     const me = this;
     me.appointmentsDTO.userId = e.selectedItem.id;
+    me.appointmentsDTO.userName = e.selectedItem.name;
   }
   onCahngeService(e) {
     const me = this;
     me.appointmentsDTO.serviceId = e.selectedItem.id;
+    me.appointmentsDTO.serviceName = e.selectedItem.name;
   }
   onChangeServiceLocation(e) {
     const me = this;
@@ -90,5 +122,6 @@ export class AppointmentCreateAndUpdateComponent
   onChangeCustomer(e) {
     const me = this;
     me.appointmentsDTO.customerId = e.selectedItem.id;
+    me.appointmentsDTO.customerName = e.selectedItem.name;
   }
 }

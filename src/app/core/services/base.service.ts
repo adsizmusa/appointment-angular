@@ -13,6 +13,9 @@ import { RightsDTO } from '../models/right.DTO';
 import { SchedulerDTO } from '../models/scheduler.DTO';
 import { spCompanyMenus } from '../models/sp.company.menus';
 import { SpUserMenus } from '../models/sp.user.menus';
+import { ProductsDTO } from '../models/products.DTO';
+import { IncomesDTO } from '../models/incomes.DTO';
+import { ExpensesDTO } from '../models/expenses.DTO';
 
 @Injectable({
   providedIn: 'root',
@@ -273,6 +276,96 @@ export class BaseService {
   public deleteOrderForms(id: number): Observable<boolean> {
     return this.httpClient.delete<boolean>(
       `${this._environment.orderformAPI.BASE_URL}/${id}`
+    );
+  }
+  //#endregion
+
+  //#region  This regison is for the end poinst of the ProductsController(
+  public getProducts(): Observable<ProductsDTO[]> {
+    return this.httpClient.get<ProductsDTO[]>(
+      `${this._environment.productAPI.BASE_URL}`
+    );
+  }
+  public getProduct(id: number): Observable<ProductsDTO> {
+    return this.httpClient.get<ProductsDTO>(
+      `${this._environment.productAPI.BASE_URL}/${id}`
+    );
+  }
+  public putProducts(id: number, dto: ProductsDTO): Observable<ProductsDTO> {
+    return this.httpClient.put<ProductsDTO>(
+      `${this._environment.productAPI.BASE_URL}/${id}`,
+      dto
+    );
+  }
+  public postProducts(dto: ProductsDTO): Observable<ProductsDTO> {
+    return this.httpClient.post<ProductsDTO>(
+      `${this._environment.productAPI.BASE_URL}`,
+      dto
+    );
+  }
+  public deleteProducts(id: number): Observable<boolean> {
+    return this.httpClient.delete<boolean>(
+      `${this._environment.productAPI.BASE_URL}/${id}`
+    );
+  }
+  //#endregion
+
+  //#region  This regions is for the end poinst of the IncomesController(
+  public getIncomes(): Observable<IncomesDTO[]> {
+    return this.httpClient.get<IncomesDTO[]>(
+      `${this._environment.incomeAPI.BASE_URL}`
+    );
+  }
+  public getIncome(id: number): Observable<IncomesDTO> {
+    return this.httpClient.get<IncomesDTO>(
+      `${this._environment.incomeAPI.BASE_URL}/${id}`
+    );
+  }
+  public putIncomes(id: number, dto: IncomesDTO): Observable<IncomesDTO> {
+    return this.httpClient.put<IncomesDTO>(
+      `${this._environment.incomeAPI.BASE_URL}/${id}`,
+      dto
+    );
+  }
+  public postIncomes(dto: IncomesDTO): Observable<IncomesDTO> {
+    return this.httpClient.post<IncomesDTO>(
+      `${this._environment.incomeAPI.BASE_URL}`,
+      dto
+    );
+  }
+  public deleteIncomes(id: number): Observable<boolean> {
+    return this.httpClient.delete<boolean>(
+      `${this._environment.incomeAPI.BASE_URL}/${id}`
+    );
+  }
+  //#endregion
+
+  //#region  This regions is for the end poinst of the ExpensesController(
+  public getExpenses(): Observable<ExpensesDTO[]> {
+    return this.httpClient.get<ExpensesDTO[]>(
+      `${this._environment.expenseAPI.BASE_URL}`
+    );
+  }
+  public getExpense(id: number): Observable<ExpensesDTO> {
+    return this.httpClient.get<ExpensesDTO>(
+      `${this._environment.expenseAPI.BASE_URL}/${id}`
+    );
+  }
+  public putExpenses(id: number, dto: ExpensesDTO): Observable<ExpensesDTO> {
+    return this.httpClient.put<ExpensesDTO>(
+      `${this._environment.expenseAPI.BASE_URL}/${id}`,
+      dto
+    );
+  }
+  public postExpenses(dto: ExpensesDTO): Observable<ExpensesDTO> {
+    return this.httpClient.post<ExpensesDTO>(
+      `${this._environment.expenseAPI.BASE_URL}`,
+      dto
+    );
+  }
+  public deleteExpenses(id: number): Observable<boolean> {
+    return this.httpClient.delete<boolean>(
+      `${this._environment.expenseAPI.BASE_URL}/${id}`
     );
   }
   //#endregion

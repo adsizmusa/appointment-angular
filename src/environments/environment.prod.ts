@@ -8,6 +8,9 @@ import { UserAPI } from 'src/app/core/api-requests/user.api';
 import { ServicesLocationAPI } from 'src/app/core/api-requests/services.location.api';
 import { ServiceAPI } from 'src/app/core/api-requests/service.api';
 import { OrderformAPI } from 'src/app/core/api-requests/orderform.api';
+import { ProductAPI } from 'src/app/core/api-requests/product.api';
+import { IncomeAPI } from 'src/app/core/api-requests/income.api';
+import { ExpenseAPI } from 'src/app/core/api-requests/expense.api';
 
 export class environment {
   production: boolean = true;
@@ -20,7 +23,10 @@ export class environment {
   customerAPI: CustomerAPI = new CustomerAPI(this.api);
   userAPI: UserAPI = new UserAPI(this.api);
   serviceAPI: ServiceAPI = new ServiceAPI(this.api);
+  productAPI: ProductAPI = new ProductAPI(this.api);
   autAPI: AutAPI = new AutAPI(this.api);
   servicesLocationAPI: ServicesLocationAPI = new ServicesLocationAPI(this.api);
   orderformAPI: OrderformAPI = new OrderformAPI(this.api);
+  incomeAPI: IncomeAPI = new IncomeAPI(this.api);
+  expenseAPI: ExpenseAPI = new ExpenseAPI(this.api);
 }

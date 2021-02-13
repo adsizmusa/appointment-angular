@@ -3,10 +3,6 @@ import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { AppointmentsDTO } from '../models/appointments.DTO';
 import { takeUntil } from 'rxjs/operators';
-import { ServiceLocationsDTO } from '../models/service.locations.DTO';
-import { UsersDTO } from '../models/users.DTO';
-import { ServicesDTO } from '../models/services.DTO';
-import { CustomersDTO } from '../models/customers.DTO';
 import { SchedulerDTO } from '../models/scheduler.DTO';
 
 @Injectable({
@@ -38,13 +34,17 @@ export class AppointmentService extends BaseService {
           return new AppointmentsDTO(s);
         });
       });
+    me.getSchedulerModel();
+  }
+
+  getSchedulerModel() {
+    const me = this;
     me.getScheduler()
       .pipe(takeUntil(me.ngUnSubscribe))
       .subscribe((data) => {
         me.schedulerDTO = data;
       });
   }
-
   getDinnerTime() {
     return { from: 12, to: 13 };
   }

@@ -26,7 +26,7 @@
         [columnAutoWidth]="true"
         [rowAlternationEnabled]="true"
         keyExpr="id"
-        [dataSource]="customerService.customersDTOs"
+        [dataSource]="productService.productsDTOs"
         [showBorders]="true"
         (onCellDblClick)="_onUpdate($event)"
       >
@@ -37,13 +37,25 @@
 
         <dxi-column
           dataField="name"
-          caption="  {{ 'Ad Soyad' }}"
+          caption="  {{ 'Ürün Adı' }}"
           dataType="string"
         ></dxi-column>
 
         <dxi-column
-          dataField="mobilePhone"
-          caption="  {{ 'Telefon' }}"
+          dataField="brand"
+          caption="  {{ 'Markası' }}"
+          dataType="string"
+        ></dxi-column>
+
+        <dxi-column
+          dataField="amountOfStock"
+          caption="  {{ 'Stok' }}"
+          dataType="string"
+        ></dxi-column>
+
+        <dxi-column
+          dataField="price"
+          caption="  {{ 'Fiyatı' }}"
           dataType="string"
         ></dxi-column>
 
@@ -65,14 +77,14 @@
         <div *dxTemplate="let data of 'ButtonsTemplate'">
           <dx-button
             (onClick)="_onUpdate(data)"
-            icon="fas fa-edit"
             [visible]="pageRights.canUpdate"
+            icon="fas fa-edit"
           ></dx-button>
           <dx-button
             name="delete"
             (onClick)="_onDeletePage(data)"
-            icon="fas fa-trash-alt"
             [visible]="pageRights.canDelete"
+            icon="fas fa-trash-alt"
           ></dx-button>
         </div>
         <dxo-paging [pageSize]="12"></dxo-paging>
@@ -86,6 +98,6 @@
     </dxi-item>
   </dx-box>
 </div>
-<app-customer-create-and-update
-  #customerCreateAndUpdateComponent
-></app-customer-create-and-update>
+<app-product-create-and-update
+  #productCreateAndUpdateComponent
+></app-product-create-and-update>

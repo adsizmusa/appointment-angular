@@ -9,6 +9,9 @@ import { UserComponent } from './views/user/user.component';
 import { ServiceComponent } from './views/service/service.component';
 import { ServicesLocationComponent } from './views/services-location/services-location.component';
 import { OrderformComponent } from './views/orderform/orderform.component';
+import { ProductComponent } from './views/product/product.component';
+import { IncomeComponent } from './views/income/income.component';
+import { ExpenseComponent } from './views/expense/expense.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,8 +22,11 @@ const routes: Routes = [
   { path: 'customer', component: CustomerComponent },
   { path: 'user', component: UserComponent },
   { path: 'service', component: ServiceComponent },
+  { path: 'product', component: ProductComponent },
   { path: 'service-location', component: ServicesLocationComponent },
   { path: 'orderform', component: OrderformComponent },
+  { path: 'income', component: IncomeComponent },
+  { path: 'expense', component: ExpenseComponent },
 ];
 
 @NgModule({

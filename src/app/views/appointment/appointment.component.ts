@@ -10,6 +10,7 @@ import { MenuEnum } from 'src/app/core/enums/menu.enum';
 import dxScheduler, { dxSchedulerOptions } from 'devextreme/ui/scheduler';
 import DevExpress from 'devextreme';
 import { StorageService } from 'src/app/core/services/storage.service';
+import notify from 'devextreme/ui/notify';
 
 @Component({
   selector: 'app-appointment',
@@ -19,7 +20,7 @@ import { StorageService } from 'src/app/core/services/storage.service';
 export class AppointmentComponent extends BaseControl implements OnInit {
   refreshButtonOptions: any;
   addButtonOptions: any;
-  groupByDate: boolean = true;
+  groupByDate: boolean = false;
   currentDate: Date = new Date();
 
   daysViewStartDate: Date = new Date();
@@ -81,6 +82,11 @@ export class AppointmentComponent extends BaseControl implements OnInit {
     }
     e.cancel = true;
   }
+
+  customerClick() {
+    const me = this;
+  }
+
   isHoliday(date: Date) {
     const localeDate = date.toLocaleDateString();
     const holidays = this.appointmentService.getHolidays();
@@ -100,5 +106,8 @@ export class AppointmentComponent extends BaseControl implements OnInit {
     const hours = date.getHours();
     const dinnerTime = this.appointmentService.getDinnerTime();
     return hours >= dinnerTime.from && hours < dinnerTime.to;
+  }
+  notifyDisableDate() {
+    notify('Seçilen tarih kayıt oluşturmak için uygun değil.', 'warning', 1000);
   }
 }

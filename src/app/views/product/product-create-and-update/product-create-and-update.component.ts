@@ -7,19 +7,19 @@ import {
 } from '@angular/core';
 import { DxPopupComponent } from 'devextreme-angular';
 import { takeUntil } from 'rxjs/operators';
-import { CustomersDTO } from 'src/app/core/models/customers.DTO';
-import { CustomerService } from 'src/app/core/services/customer.service';
+import { ProductsDTO } from 'src/app/core/models/products.DTO';
+import { ProductService } from 'src/app/core/services/product.service';
 import { BaseControl } from '../../base.control';
 
 @Component({
-  selector: 'app-customer-create-and-update',
-  templateUrl: './customer-create-and-update.component.html',
-  styleUrls: ['./customer-create-and-update.component.css'],
+  selector: 'app-product-create-and-update',
+  templateUrl: './product-create-and-update.component.html',
+  styleUrls: ['./product-create-and-update.component.css'],
 })
-export class CustomerCreateAndUpdateComponent
+export class ProductCreateAndUpdateComponent
   extends BaseControl
   implements OnInit {
-  customersDTO: CustomersDTO = new CustomersDTO();
+  productsDTO: ProductsDTO = new ProductsDTO();
 
   @ViewChild(DxPopupComponent, { static: true })
   private popup: DxPopupComponent;
@@ -27,14 +27,14 @@ export class CustomerCreateAndUpdateComponent
   @Output()
   public popupClosed: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private customerService: CustomerService) {
+  constructor(private productService: ProductService) {
     super();
   }
 
   ngOnInit() {}
-  show(customersDTO: CustomersDTO) {
+  show(productsDTO: ProductsDTO) {
     const me = this;
-    me.customersDTO = customersDTO;
+    me.productsDTO = productsDTO;
     me.popup.instance.show();
   }
   _popUpShown() {
@@ -42,27 +42,22 @@ export class CustomerCreateAndUpdateComponent
   }
   _onSave() {
     const me = this;
-    if (me.customersDTO.id == 0) {
-      me.customerService
-        .postCustomers(me.customersDTO)
+    if (me.productsDTO.id == 0) {
+      me.productService
+        .postProducts(me.productsDTO)
         .pipe(takeUntil(me.ngUnSubscribe))
         .subscribe((appointmentsDTO) => {
-          me.customerService.loadServices();
+          me.productService.loadServices();
           me.popup.instance.hide();
         });
     } else {
-      me.customerService
-        .putCustomers(me.customersDTO.id, me.customersDTO)
+      me.productService
+        .putProducts(me.productsDTO.id, me.productsDTO)
         .pipe(takeUntil(me.ngUnSubscribe))
         .subscribe((appointmentsDTO) => {
-          me.customerService.loadServices();
+          me.productService.loadServices();
           me.popup.instance.hide();
         });
     }
-  }
-  onChangeGender(e) {
-    const me = this;
-
-    me.customersDTO.gender = e.value.value;
   }
 }

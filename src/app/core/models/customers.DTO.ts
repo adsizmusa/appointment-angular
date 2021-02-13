@@ -14,5 +14,5 @@ export class CustomersDTO extends BaseDTO {
   gender?: number;
   price?: number;
   description: string;
-  isGeneral?: boolean;
+  isSendSms?: boolean;
 }

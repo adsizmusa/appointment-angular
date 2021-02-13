@@ -26,7 +26,7 @@
         [columnAutoWidth]="true"
         [rowAlternationEnabled]="true"
         keyExpr="id"
-        [dataSource]="customerService.customersDTOs"
+        [dataSource]="incomeService.incomesDTOs"
         [showBorders]="true"
         (onCellDblClick)="_onUpdate($event)"
       >
@@ -36,20 +36,26 @@
         <dxo-scrolling mode="virtual"></dxo-scrolling>
 
         <dxi-column
-          dataField="name"
-          caption="  {{ 'Ad Soyad' }}"
+          dataField="serviceID"
+          caption="  {{ 'Hizmet' }}"
           dataType="string"
         ></dxi-column>
 
         <dxi-column
-          dataField="mobilePhone"
-          caption="  {{ 'Telefon' }}"
+          dataField="productID"
+          caption="  {{ 'Ürün' }}"
           dataType="string"
         ></dxi-column>
 
         <dxi-column
           dataField="description"
           caption="  {{ 'Açıklama' }}"
+          dataType="string"
+        ></dxi-column>
+
+        <dxi-column
+          dataField="price"
+          caption="  {{ 'Fiyatı' }}"
           dataType="string"
         ></dxi-column>
 
@@ -86,6 +92,6 @@
     </dxi-item>
   </dx-box>
 </div>
-<app-customer-create-and-update
-  #customerCreateAndUpdateComponent
-></app-customer-create-and-update>
+<app-income-create-and-update
+  #incomeCreateAndUpdateComponent
+></app-income-create-and-update>

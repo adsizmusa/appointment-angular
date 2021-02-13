@@ -1,6 +1,6 @@
 <div>
   <dx-box direction="row" width="100%">
-    <dxi-item [ratio]="4">
+    <dxi-item [ratio]="6">
       <div class="calendar">
         <dx-scheduler
           [locale]="'tr'"
@@ -18,10 +18,10 @@
           [useDropDownViewSwitcher]="false"
           [editing]="false"
           [firstDayOfWeek]="1"
-          [cellDuration]="storageService.company.appointmentFrequency"
+          [cellDuration]="30"
           [startDayHour]="storageService.company.appointmentStartHour"
           [endDayHour]="storageService.company.appointmentEndHour"
-          [showAllDayPanel]="true"
+          [showAllDayPanel]="false"
           (onContentReady)="onContentReady($event)"
           (onCellClick)="onAppointmentDblClick($event)"
           (onAppointmentDblClick)="onAppointmentDblClick($event)"
@@ -99,7 +99,7 @@
               </dxi-item>
             </dx-toolbar>
           </dxi-item>
-          <dxi-item [ratio]="2">
+          <!-- <dxi-item [ratio]="2">
             <div class="options">
               <div class="option">
                 <dx-switch
@@ -111,12 +111,47 @@
                 </dx-switch>
               </div>
             </div>
-          </dxi-item>
+          </dxi-item> -->
         </dx-box>
       </div>
 
       <div>
         <dx-calendar [(value)]="currentDate"> </dx-calendar>
+      </div>
+      <br /><br />
+      <div class="column-header"><b>ÇALIŞAN LİSTESİ</b></div>
+      <div class="buttons-column">
+        <br />
+        <div>
+          <dx-button
+            icon="check"
+            text="TÜM LİSTE"
+            [width]="300"
+            color="green"
+            (onClick)="customerClick()"
+          >
+          </dx-button>
+        </div>
+        <br />
+        <div>
+          <!--For ile dönülerek çalışanlar renklerine göre getirilmeli-->
+          <dx-button
+            type="default"
+            text="Cem Özen"
+            [width]="300"
+            color="green"
+            (onClick)="customerClick()"
+          >
+          </dx-button>
+          <dx-button
+            type="success"
+            text="Musa Adsız"
+            [width]="300"
+            color="green"
+            (onClick)="customerClick()"
+          >
+          </dx-button>
+        </div>
       </div>
     </dxi-item>
   </dx-box>

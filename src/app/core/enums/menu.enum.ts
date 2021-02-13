@@ -8,4 +8,7 @@ export enum MenuEnum {
   Service = 6,
   ServiceLocation = 7,
   Orderform = 8,
+  Product = 9,
+  Income = 10,
+  Expense = 11,
 }

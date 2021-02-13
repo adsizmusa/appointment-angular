@@ -9,20 +9,36 @@
   [closeOnOutsideClick]="true"
 >
   <div *dxTemplate="let data of 'content'">
-    <div class="default-popup">
+    <div class="user-form-popup">
       <dx-box direction="row" width="100%">
         <dxi-item class="" [ratio]="1">
           <div class="form">
             <div class="dx-fieldset">
-              <div class="dx-field">
-                <div class="dx-field-label">Şirket Adı</div>
+              <div class="dx-field item">
+                <div class="dx-field-label">Adı Soyadı</div>
                 <div class="dx-field-value">
                   <dx-text-box [(value)]="customersDTO.name"></dx-text-box>
                 </div>
               </div>
 
-              <div class="dx-field">
-                <div class="dx-field-label">Email Adres</div>
+              <!-- <div class="dx-field item">
+                <div class="dx-field-label">Soyadı</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="customersDTO.surname"></dx-text-box>
+                </div>
+              </div> -->
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Cep Telefonu</div>
+                <div class="dx-field-value">
+                  <dx-text-box
+                    [(value)]="customersDTO.mobilePhone"
+                  ></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Email Adresi</div>
                 <div class="dx-field-value">
                   <dx-text-box
                     [(value)]="customersDTO.emailAddress"
@@ -30,13 +46,64 @@
                 </div>
               </div>
 
-              <div class="dx-field">
+              <div class="dx-field item">
                 <div class="dx-field-label">Adresi</div>
                 <div class="dx-field-value">
                   <dx-text-area
                     [height]="100"
                     [(value)]="customersDTO.address"
                   ></dx-text-area>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Doğum Tarihi</div>
+                <div class="dx-field-value">
+                  <dx-date-box [value]="customersDTO.birthday" type="date">
+                  </dx-date-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Cinsiyet</div>
+                <div class="dx-field-value">
+                  <dx-radio-group
+                    [items]="customersDTO.gender"
+                    layout="horizontal"
+                    displayExpr="name"
+                    (onValueChanged)="onChangeGender($event)"
+                  >
+                  </dx-radio-group>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Ücret</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="customersDTO.price"></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Açıklama</div>
+                <div class="dx-field-value">
+                  <dx-text-area
+                    [height]="100"
+                    [(value)]="customersDTO.description"
+                  ></dx-text-area>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Sms Gönderimi</div>
+                <div class="dx-field-value">
+                  <dx-switch
+                    [(value)]="customersDTO.isSendSms"
+                    [switchedOnText]="'Kapalı'"
+                    [width]="90"
+                    [switchedOffText]="'Açık'"
+                  >
+                  </dx-switch>
                 </div>
               </div>
             </div>

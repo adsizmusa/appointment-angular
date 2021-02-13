@@ -4,7 +4,7 @@
   [width]="900"
   [height]="'auto'"
   [showTitle]="true"
-  title="{{ 'Default Title' }}"
+  [title]="appointmentsDTO.name"
   [dragEnabled]="true"
   [closeOnOutsideClick]="true"
 >
@@ -14,14 +14,15 @@
         <dxi-item class="" [ratio]="1">
           <div class="form">
             <div class="dx-fieldset">
-              <div class="dx-field text-box">
+              <!-- <div class="dx-field text-box">
                 <div class="dx-field-label">Adı</div>
                 <div class="dx-field-value">
                   <dx-text-box [(value)]="appointmentsDTO.name"></dx-text-box>
                 </div>
-              </div>
+              </div> -->
+
               <div class="dx-field text-box">
-                <div class="dx-field-label">Kullancı Seçiniz</div>
+                <div class="dx-field-label">Çalışan</div>
                 <div class="dx-field-value">
                   <dx-select-box
                     [dataSource]="appointmentService.schedulerDTO.usersDTOs"
@@ -33,6 +34,21 @@
                   </dx-select-box>
                 </div>
               </div>
+
+              <div class="dx-field text-box">
+                <div class="dx-field-label">Müşteri</div>
+                <div class="dx-field-value">
+                  <dx-select-box
+                    [dataSource]="appointmentService.schedulerDTO.customersDTOs"
+                    [displayExpr]="'name'"
+                    [valueExpr]="'id'"
+                    [value]="appointmentsDTO.customerId"
+                    (onSelectionChanged)="onChangeCustomer($event)"
+                  >
+                  </dx-select-box>
+                </div>
+              </div>
+
               <div class="dx-field text-box">
                 <div class="dx-field-label">Başlangıç Tarihi</div>
                 <div class="dx-field-value">
@@ -55,7 +71,7 @@
               </div>
 
               <div class="dx-field text-box">
-                <div class="dx-field-label">Hizmet Seçiniz</div>
+                <div class="dx-field-label">Hizmet</div>
                 <div class="dx-field-value">
                   <dx-select-box
                     [dataSource]="appointmentService.schedulerDTO.servicesDTOs"
@@ -68,7 +84,7 @@
                 </div>
               </div>
               <div class="dx-field text-box">
-                <div class="dx-field-label">Hizmet Yeri Seçiniz</div>
+                <div class="dx-field-label">Hizmet Yeri</div>
                 <div class="dx-field-value">
                   <dx-select-box
                     [dataSource]="
@@ -78,19 +94,6 @@
                     [valueExpr]="'id'"
                     [value]="appointmentsDTO.serviceLocationId"
                     (onSelectionChanged)="onChangeServiceLocation($event)"
-                  >
-                  </dx-select-box>
-                </div>
-              </div>
-              <div class="dx-field text-box">
-                <div class="dx-field-label">Müşteri Seçiniz</div>
-                <div class="dx-field-value">
-                  <dx-select-box
-                    [dataSource]="appointmentService.schedulerDTO.customersDTOs"
-                    [displayExpr]="'name'"
-                    [valueExpr]="'id'"
-                    [value]="appointmentsDTO.customerId"
-                    (onSelectionChanged)="onChangeCustomer($event)"
                   >
                   </dx-select-box>
                 </div>
@@ -116,14 +119,11 @@
         </dxi-item>
       </dx-box>
       <dx-box width="100%">
-        <dxi-item class="rect demo-dark" [ratio]="2">
-          <dx-button
-            text="{{ 'Kapat' }}"
-            type="normal"
-            (onClick)="popup.instance.hide()"
-          >
+        <dxi-item class="rect demo-light" [ratio]="2">
+          <dx-button text="{{ 'Sil' }}" type="normal" (onClick)="_onDelete()">
           </dx-button>
         </dxi-item>
+
         <dxi-item class="rect demo-light" [ratio]="2">
           <dx-button text="{{ 'Kaydet' }}" type="normal" (onClick)="_onSave()">
           </dx-button>

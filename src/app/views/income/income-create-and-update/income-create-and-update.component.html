@@ -1,0 +1,67 @@
+<dx-popup
+  #popup
+  (onShown)="_popUpShown()"
+  [maxWidth]="900"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="{{ incomesDTO.id == 0 ? 'Gelir Ekle' : 'Gelir Güncelle' }}"
+  [dragEnabled]="true"
+  [closeOnOutsideClick]="true"
+>
+  <div *dxTemplate="let data of 'content'">
+    <div class="user-form-popup">
+      <dx-box direction="row" width="100%">
+        <dxi-item class="" [ratio]="1">
+          <div class="form">
+            <div class="dx-fieldset">
+              <div class="dx-field text-box">
+                <div class="dx-field-label">Hizmet</div>
+                <div class="dx-field-value">
+                  <dx-select-box
+                    [dataSource]="appointmentService.schedulerDTO.servicesDTOs"
+                    [displayExpr]="'name'"
+                    [valueExpr]="'id'"
+                    [value]="incomesDTO.serviceID"
+                    (onSelectionChanged)="onCahngeService($event)"
+                  >
+                  </dx-select-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Açıklama</div>
+                <div class="dx-field-value">
+                  <dx-text-area
+                    [height]="100"
+                    [(value)]="incomesDTO.description"
+                  ></dx-text-area>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Tutar</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="incomesDTO.price"></dx-text-box>
+                </div>
+              </div>
+            </div>
+          </div>
+        </dxi-item>
+      </dx-box>
+      <dx-box width="100%">
+        <dxi-item class="rect demo-dark" [ratio]="2">
+          <dx-button
+            text="{{ 'Kapat' }}"
+            type="normal"
+            (onClick)="popup.instance.hide()"
+          >
+          </dx-button>
+        </dxi-item>
+        <dxi-item class="rect demo-light" [ratio]="2">
+          <dx-button text="{{ 'Kaydet' }}" type="normal" (onClick)="_onSave()">
+          </dx-button>
+        </dxi-item>
+      </dx-box>
+    </div>
+  </div>
+</dx-popup>

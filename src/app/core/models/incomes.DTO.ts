@@ -6,8 +6,9 @@ export class IncomesDTO extends BaseDTO {
     Object.assign(this, init);
   }
 
-  serviceID?: number = 0;
-  productID?: number = 0;
+  serviceID?: number;
+  productID?: number;
+  productAmount?: number;
   description: string;
   price?: number = 0;
 }

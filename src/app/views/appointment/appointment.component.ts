@@ -11,6 +11,8 @@ import dxScheduler, { dxSchedulerOptions } from 'devextreme/ui/scheduler';
 import DevExpress from 'devextreme';
 import { StorageService } from 'src/app/core/services/storage.service';
 import notify from 'devextreme/ui/notify';
+import { UserService } from 'src/app/core/services/user.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-appointment',
@@ -33,6 +35,7 @@ export class AppointmentComponent extends BaseControl implements OnInit {
   constructor(
     public appointmentService: AppointmentService,
     public storageService: StorageService,
+
     private slideService: SlideService
   ) {
     super();
@@ -46,7 +49,9 @@ export class AppointmentComponent extends BaseControl implements OnInit {
   }
   ngOnInit(): void {
     const me = this;
+
     me.appointmentService.loadServices();
+
     me.toolbaarButtons();
     me.pageRights = me.slideService.getPageRights(MenuEnum.Appointment);
   }
@@ -83,8 +88,17 @@ export class AppointmentComponent extends BaseControl implements OnInit {
     e.cancel = true;
   }
 
-  customerClick() {
+  changeUser(e) {
     const me = this;
+
+    me.appointmentService.loadServices();
+  }
+  changeAllUser() {
+    const me = this;
+    me.appointmentService.usersDTOs.forEach((item) => {
+      item.selected = true;
+    });
+    me.appointmentService.loadServices();
   }
 
   isHoliday(date: Date) {

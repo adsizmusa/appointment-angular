@@ -53,9 +53,10 @@ export class BaseService {
     );
   }
   //#region  This regison is for the end poinst of the appointmentsControllers
-  public getAppointments(): Observable<AppointmentsDTO[]> {
-    return this.httpClient.get<AppointmentsDTO[]>(
-      `${this._environment.appointmentAPI.BASE_URL}`
+  public getAppointments(userIds?: number[]): Observable<AppointmentsDTO[]> {
+    return this.httpClient.post<AppointmentsDTO[]>(
+      `${this._environment.appointmentAPI.getAppointments}`,
+      userIds
     );
   }
   public getScheduler(): Observable<SchedulerDTO> {

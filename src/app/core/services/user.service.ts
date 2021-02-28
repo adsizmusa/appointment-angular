@@ -19,11 +19,13 @@ export class UserService extends BaseService {
       .pipe(takeUntil(me.ngUnSubscribe))
       .subscribe((data) => {
         me.usersDTOs = data.map((s) => {
+          if (s.color == null || s.color == undefined) {
+            s.color = '#fff';
+          }
           return new UsersDTO(s);
         });
-
+        var nada = true;
         // me.appointmentsDTOs = data;
       });
   }
-
 }

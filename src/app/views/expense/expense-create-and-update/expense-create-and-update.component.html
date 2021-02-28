@@ -14,19 +14,35 @@
         <dxi-item class="" [ratio]="1">
           <div class="form">
             <div class="dx-fieldset">
-              <!-- <div class="dx-field text-box">
-                <div class="dx-field-label">Ürün</div>
+              <div class="dx-field text-box">
+                <div class="dx-field-label">Ürünler</div>
                 <div class="dx-field-value">
                   <dx-select-box
-                    [dataSource]="appointmentService.schedulerDTO.productsDTOs"
+                    [dataSource]="productService.productsDTOs"
                     [displayExpr]="'name'"
                     [valueExpr]="'id'"
-                    [value]="appointmentsDTO.productId"
-                    (onSelectionChanged)="onCahngeService($event)"
+                    [value]="expensesDTO.productID"
+                    (onSelectionChanged)="onCahngeProduct($event)"
                   >
                   </dx-select-box>
                 </div>
-              </div> -->
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Ürün Adeti</div>
+                <div class="dx-field-value">
+                  <dx-text-box
+                    [(value)]="expensesDTO.productAmount"
+                  ></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Tutar</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="expensesDTO.price"></dx-text-box>
+                </div>
+              </div>
 
               <div class="dx-field item">
                 <div class="dx-field-label">Açıklama</div>
@@ -35,13 +51,6 @@
                     [height]="100"
                     [(value)]="expensesDTO.description"
                   ></dx-text-area>
-                </div>
-              </div>
-
-              <div class="dx-field item">
-                <div class="dx-field-label">Tutar</div>
-                <div class="dx-field-value">
-                  <dx-text-box [(value)]="expensesDTO.price"></dx-text-box>
                 </div>
               </div>
             </div>

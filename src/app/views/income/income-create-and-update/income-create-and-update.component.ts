@@ -11,6 +11,7 @@ import { IncomesDTO } from 'src/app/core/models/incomes.DTO';
 import { ServicesDTO } from 'src/app/core/models/services.DTO';
 import { AppointmentService } from 'src/app/core/services/appointment.service';
 import { IncomeService } from 'src/app/core/services/income.service';
+import { ProductService } from 'src/app/core/services/product.service';
 import { BaseControl } from '../../base.control';
 
 @Component({
@@ -31,6 +32,7 @@ export class IncomeCreateAndUpdateComponent
 
   constructor(
     private incomeService: IncomeService,
+    public productService: ProductService,
     public appointmentService: AppointmentService
   ) {
     super();
@@ -39,6 +41,7 @@ export class IncomeCreateAndUpdateComponent
   ngOnInit() {
     const me = this;
     me.appointmentService.getSchedulerModel();
+    me.productService.loadServices();
   }
   show(incomesDTO: IncomesDTO) {
     const me = this;
@@ -52,6 +55,10 @@ export class IncomeCreateAndUpdateComponent
   onCahngeService(e) {
     const me = this;
     me.incomesDTO.serviceID = e.selectedItem.id;
+  }
+  onCahngeProduct(e) {
+    const me = this;
+    me.incomesDTO.productID = e.selectedItem.id;
   }
   _onSave() {
     const me = this;

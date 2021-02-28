@@ -23,4 +23,5 @@ export class UsersDTO extends BaseDTO {
   baseWorkerId?: number;
   permissonIds: string;
   commission: number;
+  selected: boolean = false;
 }

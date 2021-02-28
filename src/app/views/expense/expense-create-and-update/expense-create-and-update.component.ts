@@ -9,6 +9,7 @@ import { DxPopupComponent } from 'devextreme-angular';
 import { takeUntil } from 'rxjs/operators';
 import { ExpensesDTO } from 'src/app/core/models/expenses.DTO';
 import { ExpenseService } from 'src/app/core/services/expense.service';
+import { ProductService } from 'src/app/core/services/product.service';
 import { BaseControl } from '../../base.control';
 
 @Component({
@@ -27,11 +28,17 @@ export class ExpenseCreateAndUpdateComponent
   @Output()
   public popupClosed: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private expenseService: ExpenseService) {
+  constructor(
+    private expenseService: ExpenseService,
+    public productService: ProductService
+  ) {
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const me = this;
+    me.productService.loadServices();
+  }
   show(expensesDTO: ExpensesDTO) {
     const me = this;
     me.expensesDTO = expensesDTO;
@@ -39,6 +46,10 @@ export class ExpenseCreateAndUpdateComponent
   }
   _popUpShown() {
     const me = this;
+  }
+  onCahngeProduct(e) {
+    const me = this;
+    me.expensesDTO.productID = e.selectedItem.id;
   }
   _onSave() {
     const me = this;

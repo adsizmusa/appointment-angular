@@ -6,5 +6,6 @@ export class AppointmentAPI {
   debugs: Debugs = new Debugs();
   BASE_URL: string = this.debugs.onDebug(this.apiEnum) + 'appointments/';
   getScheduler = this.BASE_URL + 'GetScheduler';
+  getAppointments = this.BASE_URL + 'GetAppointments';
   constructor(private apiEnum: ApiEnum) {}
 }

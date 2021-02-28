@@ -28,13 +28,26 @@
                 </div>
               </div>
 
-              <div class="dx-field item">
-                <div class="dx-field-label">Açıklama</div>
+              <div class="dx-field text-box">
+                <div class="dx-field-label">Ürünler</div>
                 <div class="dx-field-value">
-                  <dx-text-area
-                    [height]="100"
-                    [(value)]="incomesDTO.description"
-                  ></dx-text-area>
+                  <dx-select-box
+                    [dataSource]="productService.productsDTOs"
+                    [displayExpr]="'name'"
+                    [valueExpr]="'id'"
+                    [value]="incomesDTO.productID"
+                    (onSelectionChanged)="onCahngeProduct($event)"
+                  >
+                  </dx-select-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Ürün Adeti</div>
+                <div class="dx-field-value">
+                  <dx-text-box
+                    [(value)]="incomesDTO.productAmount"
+                  ></dx-text-box>
                 </div>
               </div>
 
@@ -42,6 +55,16 @@
                 <div class="dx-field-label">Tutar</div>
                 <div class="dx-field-value">
                   <dx-text-box [(value)]="incomesDTO.price"></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Açıklama</div>
+                <div class="dx-field-value">
+                  <dx-text-area
+                    [height]="100"
+                    [(value)]="incomesDTO.description"
+                  ></dx-text-area>
                 </div>
               </div>
             </div>

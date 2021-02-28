@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { AppointmentsDTO } from '../models/appointments.DTO';
 import { takeUntil } from 'rxjs/operators';
 import { SchedulerDTO } from '../models/scheduler.DTO';
+import { UsersDTO } from '../models/users.DTO';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +13,24 @@ import { SchedulerDTO } from '../models/scheduler.DTO';
 export class AppointmentService extends BaseService {
   appointmentsDTOs: AppointmentsDTO[] = [];
   schedulerDTO: SchedulerDTO = new SchedulerDTO();
+  usersDTOs: UsersDTO[] = [];
+
   constructor(protected httpClient: HttpClient) {
     super(httpClient);
     const me = this;
-    me.loadServices();
+    me.getUsers()
+      .pipe(takeUntil(me.ngUnSubscribe))
+      .subscribe((data) => {
+        me.usersDTOs = data.map((s) => {
+          if (s.color == null || s.color == undefined) {
+            s.color = '#fff';
+          }
+          s.selected = true;
+          return new UsersDTO(s);
+        });
+
+        me.loadServices();
+      });
   }
   setApointment(appointmentsDTO: AppointmentsDTO[]): AppointmentsDTO[] {
     appointmentsDTO.forEach((item) => {
@@ -26,7 +42,13 @@ export class AppointmentService extends BaseService {
   }
   loadServices() {
     const me = this;
-    me.getAppointments()
+    var userIds = me.usersDTOs
+      .filter((s) => s.selected == true)
+      .map((s) => {
+        return s.id;
+      });
+
+    me.getAppointments(userIds)
       .pipe(takeUntil(me.ngUnSubscribe))
       .subscribe((data) => {
         data = this.setApointment(data);
@@ -34,6 +56,7 @@ export class AppointmentService extends BaseService {
           return new AppointmentsDTO(s);
         });
       });
+
     me.getSchedulerModel();
   }
 

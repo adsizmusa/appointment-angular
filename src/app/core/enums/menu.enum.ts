@@ -11,4 +11,5 @@ export enum MenuEnum {
   Product = 9,
   Income = 10,
   Expense = 11,
+  SmsTemplate = 12,
 }

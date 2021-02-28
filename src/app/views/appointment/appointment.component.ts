@@ -77,21 +77,25 @@ export class AppointmentComponent extends BaseControl implements OnInit {
   onAppointmentDblClick(e) {
     const me = this;
     var appointmentsDTO = new AppointmentsDTO();
+
     if (!e.targetedAppointmentData) {
       appointmentsDTO.startDate = e.cellData.startDate;
       appointmentsDTO.endDate = e.cellData.endDate;
       me.appointmentCreateAndUpdateComponent.show(appointmentsDTO);
     } else {
-      appointmentsDTO = e.targetedAppointmentData;
-      me.appointmentCreateAndUpdateComponent.show(appointmentsDTO);
+      if (e.targetedAppointmentData.enable) {
+        appointmentsDTO = e.targetedAppointmentData;
+        me.appointmentCreateAndUpdateComponent.show(appointmentsDTO);
+      }
     }
+
     e.cancel = true;
   }
 
   changeUser(e) {
     const me = this;
 
-    me.appointmentService.loadServices();
+    me.appointmentService.changeAppointmentUser();
   }
   changeAllUser() {
     const me = this;

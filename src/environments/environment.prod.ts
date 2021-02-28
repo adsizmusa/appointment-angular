@@ -11,6 +11,7 @@ import { OrderformAPI } from 'src/app/core/api-requests/orderform.api';
 import { ProductAPI } from 'src/app/core/api-requests/product.api';
 import { IncomeAPI } from 'src/app/core/api-requests/income.api';
 import { ExpenseAPI } from 'src/app/core/api-requests/expense.api';
+import { SmstemplateAPI } from 'src/app/core/api-requests/smstemplate.api';
 
 export class environment {
   production: boolean = true;
@@ -29,4 +30,5 @@ export class environment {
   orderformAPI: OrderformAPI = new OrderformAPI(this.api);
   incomeAPI: IncomeAPI = new IncomeAPI(this.api);
   expenseAPI: ExpenseAPI = new ExpenseAPI(this.api);
+  smstemplateAPI: SmstemplateAPI = new SmstemplateAPI(this.api);
 }

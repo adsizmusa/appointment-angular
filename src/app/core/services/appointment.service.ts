@@ -53,19 +53,41 @@ export class AppointmentService extends BaseService {
       .subscribe((data) => {
         data = this.setApointment(data);
         me.appointmentsDTOs = data.map((s) => {
+          s.enable = true;
           return new AppointmentsDTO(s);
         });
+        me.getSchedulerModel();
       });
-
-    me.getSchedulerModel();
   }
 
+  changeAppointmentUser() {
+    const me = this;
+    me.loadServices();
+  }
   getSchedulerModel() {
     const me = this;
     me.getScheduler()
       .pipe(takeUntil(me.ngUnSubscribe))
       .subscribe((data) => {
         me.schedulerDTO = data;
+        me.schedulerDTO.usersDTOs.forEach((s) => {
+          var userItem = me.usersDTOs.find((a) => a.id == s.id);
+
+          if (userItem.selected) {
+            s.color = userItem.color;
+            s.name = userItem.name;
+          } else {
+            s.color = '#e6e6e6';
+            s.name = '';
+
+            me.appointmentsDTOs
+              .filter((b) => b.userId == s.id)
+              .forEach((b) => {
+                b.enable = false;
+                b.userName = '';
+              });
+          }
+        });
       });
   }
   getDinnerTime() {

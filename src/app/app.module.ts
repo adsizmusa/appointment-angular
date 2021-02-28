@@ -40,6 +40,8 @@ import { IncomeComponent } from './views/income/income.component';
 import { IncomeCreateAndUpdateComponent } from './views/income/income-create-and-update/income-create-and-update.component';
 import { ExpenseComponent } from './views/expense/expense.component';
 import { ExpenseCreateAndUpdateComponent } from './views/expense/expense-create-and-update/expense-create-and-update.component';
+import { SmstemplateComponent } from './views/smstemplate/smstemplate.component';
+import { SmstemplateCreateAndUpdateComponent } from './views/smstemplate/smstemplate-create-and-update/smstemplate-create-and-update.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { ExpenseCreateAndUpdateComponent } from './views/expense/expense-create-
     IncomeCreateAndUpdateComponent,
     ExpenseComponent,
     ExpenseCreateAndUpdateComponent,
+    SmstemplateComponent,
+    SmstemplateCreateAndUpdateComponent,
   ],
   exports: [
     //...

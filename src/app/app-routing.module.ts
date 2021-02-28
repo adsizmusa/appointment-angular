@@ -12,6 +12,7 @@ import { OrderformComponent } from './views/orderform/orderform.component';
 import { ProductComponent } from './views/product/product.component';
 import { IncomeComponent } from './views/income/income.component';
 import { ExpenseComponent } from './views/expense/expense.component';
+import { SmstemplateComponent } from './views/smstemplate/smstemplate.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'orderform', component: OrderformComponent },
   { path: 'income', component: IncomeComponent },
   { path: 'expense', component: ExpenseComponent },
+  { path: 'smstemplate', component: SmstemplateComponent },
 ];
 
 @NgModule({

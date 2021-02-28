@@ -16,6 +16,7 @@ import { SpUserMenus } from '../models/sp.user.menus';
 import { ProductsDTO } from '../models/products.DTO';
 import { IncomesDTO } from '../models/incomes.DTO';
 import { ExpensesDTO } from '../models/expenses.DTO';
+import { SmstemplatesDTO } from '../models/smstemplates.DTO';
 
 @Injectable({
   providedIn: 'root',
@@ -367,6 +368,39 @@ export class BaseService {
   public deleteExpenses(id: number): Observable<boolean> {
     return this.httpClient.delete<boolean>(
       `${this._environment.expenseAPI.BASE_URL}/${id}`
+    );
+  }
+  //#endregion
+
+  //#region  This regions is for the end poinst of the SmsTemplateController(
+  public getSmsTemplates(): Observable<SmstemplatesDTO[]> {
+    return this.httpClient.get<SmstemplatesDTO[]>(
+      `${this._environment.smstemplateAPI.BASE_URL}`
+    );
+  }
+  public getSmsTemplate(id: number): Observable<SmstemplatesDTO> {
+    return this.httpClient.get<SmstemplatesDTO>(
+      `${this._environment.smstemplateAPI.BASE_URL}/${id}`
+    );
+  }
+  public putSmsTemplates(
+    id: number,
+    dto: SmstemplatesDTO
+  ): Observable<SmstemplatesDTO> {
+    return this.httpClient.put<SmstemplatesDTO>(
+      `${this._environment.smstemplateAPI.BASE_URL}/${id}`,
+      dto
+    );
+  }
+  public postSmsTemplates(dto: SmstemplatesDTO): Observable<SmstemplatesDTO> {
+    return this.httpClient.post<SmstemplatesDTO>(
+      `${this._environment.smstemplateAPI.BASE_URL}`,
+      dto
+    );
+  }
+  public deleteSmsTemplates(id: number): Observable<boolean> {
+    return this.httpClient.delete<boolean>(
+      `${this._environment.smstemplateAPI.BASE_URL}/${id}`
     );
   }
   //#endregion

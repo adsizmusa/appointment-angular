@@ -18,4 +18,5 @@ export class AppointmentsDTO extends BaseDTO {
   description: string;
   additionalNote: string;
   price?: number;
+  enable: boolean = true;
 }

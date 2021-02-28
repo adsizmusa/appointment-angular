@@ -1,0 +1,66 @@
+<dx-popup
+  #popup
+  (onShown)="_popUpShown()"
+  [maxWidth]="900"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="{{ smstemplatesDTO.id == 0 ? 'Şablon Ekle' : 'Şablon Güncelle' }}"
+  [dragEnabled]="true"
+  [closeOnOutsideClick]="true"
+>
+  <div *dxTemplate="let data of 'content'">
+    <div class="user-form-popup">
+      <dx-box direction="row" width="100%">
+        <dxi-item class="" [ratio]="1">
+          <div class="form">
+            <div class="dx-fieldset">
+              <div class="dx-field item">
+                <div class="dx-field-label">Sms Metni</div>
+                <div class="dx-field-value">
+                  <dx-text-box [(value)]="smstemplatesDTO.text"></dx-text-box>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Gönderim Zamanı</div>
+                <div class="dx-field-value">
+                  <dx-text-area
+                    [height]="100"
+                    [(value)]="smstemplatesDTO.sendTime"
+                  ></dx-text-area>
+                </div>
+              </div>
+
+              <div class="dx-field item">
+                <div class="dx-field-label">Sms Gönderimi</div>
+                <div class="dx-field-value">
+                  <dx-switch
+                    [(value)]="smstemplatesDTO.sendSms"
+                    [switchedOnText]="'Kapalı'"
+                    [width]="90"
+                    [switchedOffText]="'Açık'"
+                  >
+                  </dx-switch>
+                </div>
+              </div>
+            </div>
+          </div>
+        </dxi-item>
+      </dx-box>
+      <dx-box width="100%">
+        <dxi-item class="rect demo-dark" [ratio]="2">
+          <dx-button
+            text="{{ 'Kapat' }}"
+            type="normal"
+            (onClick)="popup.instance.hide()"
+          >
+          </dx-button>
+        </dxi-item>
+        <dxi-item class="rect demo-light" [ratio]="2">
+          <dx-button text="{{ 'Kaydet' }}" type="normal" (onClick)="_onSave()">
+          </dx-button>
+        </dxi-item>
+      </dx-box>
+    </div>
+  </div>
+</dx-popup>
